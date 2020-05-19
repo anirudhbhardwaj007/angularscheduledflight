@@ -1,0 +1,92 @@
+<div>
+    <div class="container" style="margin-top: 70px; margin-left: 200px;">
+
+        <form #data="ngForm" (ngSubmit)="addSchedule(data)">
+
+            <div>
+                <h1>ADD SCHEDULE FLIGHT</h1><br><br>
+                <label>FLIGHT NUMBER</label>
+                <input type="number" class="form-control" name="flightnumber" ngModel #flightnumberCtrl=ngModel required
+                    length="2">
+                <div *ngIf="flightnumberCtrl.errors!=null && flightnumberCtrl.errors.required">
+                    flightnumber is required
+                </div>
+                <div *ngIf="flightnumberCtrl.errors!=null && flightnumberCtrl.errors.length">
+                    length should be 2
+                </div>
+            </div>
+            <br>
+            <div>
+                <label>Source Aiport</label>
+                <input type="text" class="form-control" name="sourceairport" ngModel #sourceairportCtrl=ngModel
+                    required>
+                <div *ngIf="sourceairportCtrl.errors!=null && sourceairportCtrl.errors.required">
+                    sourceairport is required
+                </div>
+            </div>
+
+            <br>
+            <div>
+                <label>Destination Airport</label>
+                <input type="text" class="form-control" name="destinationairport" ngModel
+                    #destinationairportCtrl=ngModel required>
+                <div *ngIf="destinationairportCtrl.errors!=null && destinationairportCtrl.errors.required">
+                    destinationairport is required
+                </div>
+            </div>
+            <br>
+            <div>
+                <label>Arrival Time</label>
+                <input type="datetime-local" class="form-control" name="arrivaltime" ngModel #arrivaltimeCtrl=ngModel
+                    required>
+                <div *ngIf="arrivaltimeCtrl.errors!=null && arrivaltimeCtrl.errors.required">
+                    arrival time is required
+                </div>
+            </div>
+            <br>
+
+            <div>
+                <label>DEPARTURE TIME</label>
+                <input type="datetime-local" class="form-control" name="departuretime" ngModel
+                    #departuretimeCtrl=ngModel required>
+                <div *ngIf="departuretimeCtrl.errors!=null && departuretimeCtrl.errors.required">
+                    departuretime required
+                </div>
+            </div>
+            <br>
+            <div>
+                <label>AVAILABLE SEATS</label>
+                <input type="number" class="form-control" name="availableseats" ngModel #availableseatsCtrl=ngModel
+                    required>
+                <div *ngIf="availableseatsCtrl.errors!=null && availableseatsCtrl.errors.required">
+                    availableseats details is required
+                </div>
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-success">Add Schedule</button>
+            </div>
+        </form>
+
+    </div>
+    <br>
+    <div *ngIf="added!==null">
+        <h3>Schedule added</h3>
+        FlightNumber = {{added.flightNumber}}
+        SourceAirport={{added.sourceAirport}}
+        DestiantionAirport={{added.destinationAirport}}
+        ArrivalTime={{added.arrivalTime}}
+        DepartureTime={{added.departureTime}}
+        AvailableSeats={{added.availableSeats}}
+
+
+    </div>
+
+    <br>
+    <br>
+
+
+
+
+
+</div>

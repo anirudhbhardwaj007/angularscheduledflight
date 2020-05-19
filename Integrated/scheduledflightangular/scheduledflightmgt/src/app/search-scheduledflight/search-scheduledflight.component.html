@@ -1,0 +1,44 @@
+
+<form  #form ="ngForm"  (ngSubmit)="form.valid && fetchByFlightNumber(form)">
+        <div>
+            <h1>FIND Schedule</h1>
+            <div>
+                <label>UserID</label>
+                <input type="number" class="form-control" name="flightnumber" ngModel  #userIdCtrl=ngModel required >
+                <div *ngIf="userIdCtrl.errors!=null && userIdCtrl.errors.required">
+                     required
+                </div>
+                
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit">Find Schedule</button>
+    </form>
+    
+    <div *ngIf="foundStatus==='found'">
+        Flight Number={{foundSchedule.flightNumber}} ,
+        Source Airport={{foundSchedule.sourceAirport}} ,
+        Destination Airport={{foundSchedule.destinationAirport}} 
+        Arrival Time = {{toDateTime(foundSchedule.arrivalTime)}} 
+        Departure Time = {{toDateTime(foundSchedule.departureTime)}} 
+        Available Seats = {{foundSchedule.availableSeats}} 
+    </div>
+    
+    <div *ngIf="foundStatus=='notfound'">
+        User not found !
+        </div>
+        
+        
+    <div>
+        <li>For ADD
+            <a href="" routerLink="../add-scheduledflight">ADD</a>
+        </li>
+        <br>
+        <li>
+            <a href="" routerLink="../">HOMEPAGE</a>
+        </li>
+        
+    </div>
+    <br>
+    <br>
+    
+    

@@ -1,0 +1,49 @@
+
+<h2>Schedule list and Delete Schedule</h2>
+<div  class="container">
+<table class="table" border="1">
+    <tr >
+        <th> Flight Number </th>
+       <th>Source Airport</th> 
+       <th> Destination Airport </th>
+       <th> Arrival Time </th>
+        <th> Departure Time </th>
+        <th> Available Seats </th>
+    </tr>
+
+    <tr *ngFor="let sch of schedules">
+        <td>{{sch.flightNumber}}</td> 
+        <td>{{ sch.sourceAirport}}</td> 
+        <td>{{sch.destinationAirport}}</td>
+        <td>{{ toDateTime(sch.arrivalTime)}}</td> 
+        <td>{{ toDateTime(sch.departureTime)}}</td> 
+        <td>{{ sch.availableSeats}}</td> 
+        <td>
+            <td><button class="btn btn-success"(click)="removeScheduleByFlightNumber(sch.flightNumber)">REMOVE SCHEDULE</button></td> 
+            <td> <button class="btn btn-success"(click)="update()">UPDATE USER</button>
+
+        </td>   
+      </tr>
+    
+     </table>
+
+
+    </div>
+    <br>
+    <br>
+    <div>
+        <li>For Adding Schedule
+            <a href="" routerLink="../add-scheduledflight">ADD</a>
+        </li>
+    </div>
+    <li>
+        <a href="" routerLink="../">HOMEPAGE</a>
+    </li>
+    
+    
+    <br>
+    <br>
+    
+
+
+     
