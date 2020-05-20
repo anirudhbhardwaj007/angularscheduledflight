@@ -5,8 +5,6 @@ org\cap\scheduledflight\dto\CreateScheduleRequest.class
 org\cap\scheduledflight\service\ScheduledFlightServiceImpl.class
 org\cap\scheduledflight\dao\IScheduleDao.class
 org\cap\scheduledflight\service\IScheduledFlightService.class
-org\cap\scheduledflight\dto\Flight.class
-org\cap\scheduledflight\dto\Aiport.class
 org\cap\scheduledflight\ScheduledFlightApplication.class
 org\cap\scheduledflight\dto\ScheduledFlightDetailsDto.class
 org\cap\scheduledflight\exceptions\InvalidArgumentException.class

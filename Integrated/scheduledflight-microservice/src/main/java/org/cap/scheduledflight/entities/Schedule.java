@@ -1,7 +1,5 @@
 package org.cap.scheduledflight.entities;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +12,7 @@ public class Schedule {
 
     @Id
     @GeneratedValue
-    private int scheduleid;
+    private int scheduleId;
 
     private String sourceAirportName;
     private String destinationAirportName;
@@ -26,6 +24,10 @@ public class Schedule {
         return departureDateTime;
     }
 
+    public void setDeparturedatetime(LocalDateTime departuredatetime) {
+        this.departureDateTime = departuredatetime;
+    }
+
     public LocalDateTime getArrivalDateTime() {
         return arrivalDateTime;
     }
@@ -33,11 +35,6 @@ public class Schedule {
     public void setArrivalDateTime(LocalDateTime arrivalDateTime) {
         this.arrivalDateTime = arrivalDateTime;
     }
-
-    public void setDeparturedatetime(LocalDateTime departuredatetime) {
-        this.departureDateTime = departuredatetime;
-    }
-
 
     public String getSourceAirportName() {
         return sourceAirportName;
@@ -55,12 +52,12 @@ public class Schedule {
         this.destinationAirportName = destinationAirportName;
     }
 
-    public int getScheduleid() {
-        return scheduleid;
+    public int getScheduleId() {
+        return scheduleId;
     }
 
-    public void setScheduleid(int scheduleid) {
-        this.scheduleid = scheduleid;
+    public void setScheduleId(int scheduleId) {
+        this.scheduleId = scheduleId;
     }
 
 

@@ -11,7 +11,7 @@ public class ScheduledFlight {
 
     @Id
     @GeneratedValue
-    private int schedule_flight_id;
+    private int schedule_Flight_Id;
 
     private BigInteger flightNumber;
     private int availableSeats;
@@ -45,12 +45,12 @@ public class ScheduledFlight {
         this.schedule = schedule;
     }
 
-    public int getSchedule_flight_id() {
-        return schedule_flight_id;
+    public int getSchedule_Flight_Id() {
+        return schedule_Flight_Id;
     }
 
-    public void setSchedule_flight_id(int schedule_flight_id) {
-        this.schedule_flight_id = schedule_flight_id;
+    public void setSchedule_Flight_Id(int schedule_Flight_Id) {
+        this.schedule_Flight_Id = schedule_Flight_Id;
 
 
     }

@@ -7,9 +7,10 @@ public class CreateScheduleRequest {
     private int availableSeats;
     private BigInteger flightNumber;
     private BigInteger scheduleid;
-
     private long arrivalTime;
     private long departureTime;
+    private String sourceAirport;
+    private String destinationAirport;
 
     public int getAvailableSeats() {
         return availableSeats;
@@ -27,13 +28,6 @@ public class CreateScheduleRequest {
         this.sourceAirport = sourceAirport;
     }
 
-    private String sourceAirport;
-    private String destinationAirport;
-
-
-
-
-
     public long getDepartureTime() {
         return departureTime;
     }
@@ -41,8 +35,6 @@ public class CreateScheduleRequest {
     public void setDepartureTime(long departureTime) {
         this.departureTime = departureTime;
     }
-
-
 
 
     public String getDestinationAirport() {
@@ -62,8 +54,6 @@ public class CreateScheduleRequest {
         this.scheduleid = scheduleid;
     }
 
-
-    
 
     public long getArrivalTime() {
         return arrivalTime;

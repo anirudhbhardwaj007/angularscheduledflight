@@ -15,11 +15,11 @@ public class ScheduleFlightUtil {
     private static final Logger Log = LoggerFactory.getLogger(ScheduleFlightUtil.class);
 
 
-    public static List<ScheduledFlightDetailsDto>scheduleFlightDetails(List<ScheduledFlight>scheduledFlights){
-        List<ScheduledFlightDetailsDto>desired=new ArrayList<>();
-        for (ScheduledFlight scheduledFlight:scheduledFlights){
-           ScheduledFlightDetailsDto details= scheduleFlightDetails(scheduledFlight);
-           desired.add(details);
+    public static List<ScheduledFlightDetailsDto> scheduleFlightDetails(List<ScheduledFlight> scheduledFlights) {
+        List<ScheduledFlightDetailsDto> desired = new ArrayList<>();
+        for (ScheduledFlight scheduledFlight : scheduledFlights) {
+            ScheduledFlightDetailsDto details = scheduleFlightDetails(scheduledFlight);
+            desired.add(details);
         }
         return desired;
     }
@@ -31,31 +31,21 @@ public class ScheduleFlightUtil {
 
         scheduledFlightDetailsDto.setFlightNumber(scheduledFlight.getFlightNumber());
 
-        Schedule schedule=scheduledFlight.getSchedule();
-        //Airport
-        // Aiport airport = fetchAirportbyAirportCode(airportCode);2
+        Schedule schedule = scheduledFlight.getSchedule();
         scheduledFlightDetailsDto.setSourceAirport(schedule.getSourceAirportName());
         scheduledFlightDetailsDto.setDestinationAirport(schedule.getDestinationAirportName());
 
-       LocalDateTime arrivalDateTime=schedule.getArrivalDateTime();
-        long arrivalDateMillis= DateUtil.millis(arrivalDateTime);
+        LocalDateTime arrivalDateTime = schedule.getArrivalDateTime();
+        long arrivalDateMillis = DateUtil.millis(arrivalDateTime);
         scheduledFlightDetailsDto.setArrivalTime(arrivalDateMillis);
 
-        LocalDateTime departureDateTime=schedule.getDeparturedatetime();
-        long departureDateMillis= DateUtil.millis(departureDateTime);
+        LocalDateTime departureDateTime = schedule.getDeparturedatetime();
+        long departureDateMillis = DateUtil.millis(departureDateTime);
         scheduledFlightDetailsDto.setDepartureTime(departureDateMillis);
-
 
 
         return scheduledFlightDetailsDto;
     }
-
-
-
-
-
-
-
 
 
 }

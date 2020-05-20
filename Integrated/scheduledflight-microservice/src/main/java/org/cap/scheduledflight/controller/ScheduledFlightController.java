@@ -1,8 +1,6 @@
 package org.cap.scheduledflight.controller;
 
-import org.cap.scheduledflight.dto.Aiport;
 import org.cap.scheduledflight.dto.CreateScheduleRequest;
-import org.cap.scheduledflight.dto.Flight;
 import org.cap.scheduledflight.dto.ScheduledFlightDetailsDto;
 import org.cap.scheduledflight.entities.Schedule;
 import org.cap.scheduledflight.entities.ScheduledFlight;
@@ -34,16 +32,14 @@ public class ScheduledFlightController {
     @Autowired
     private IScheduledFlightService scheduledFlightService;
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
 
     @PostMapping("/add")
     public ResponseEntity<ScheduledFlightDetailsDto> createScheduledFlightRequest(@RequestBody CreateScheduleRequest requestdata) {
 
         ScheduledFlight scheduledFlight = new ScheduledFlight();
         scheduledFlight.setFlightNumber(requestdata.getFlightNumber());
-
         scheduledFlight.setAvailableSeats(requestdata.getAvailableseats());
+
         Schedule schedule = new Schedule();
         scheduledFlight.setSchedule(schedule);
 
@@ -56,17 +52,7 @@ public class ScheduledFlightController {
         long departureMillis = requestdata.getDepartureTime();
         LocalDateTime departureDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(departureMillis), ZoneId.systemDefault());
         schedule.setDeparturedatetime(departureDateTime);
-        //
 
-
-        // String arrivalTimeString = requestdata.getArrivalTime();
-        //  LocalDateTime arrivalDateTime = LocalDateTime.parse(arrivalTimeString, formatter);
-        //schedule.setDeparturedatetime(departureDateTime);
-
-
-        //String departureTimeString = requestdata.getDepartureTime();
-        // LocalDateTime departureDateTime = LocalDateTime.parse(departureTimeString, formatter);
-        //  schedule.setDeparturedatetime(departureDateTime);
 
         schedule.setDestinationAirportName(requestdata.getDestinationAirport());
         schedule.setSourceAirportName(requestdata.getSourceAirport());
@@ -76,24 +62,6 @@ public class ScheduledFlightController {
         ScheduledFlightDetailsDto scheduledFlightDetailsDto = ScheduleFlightUtil.scheduleFlightDetails(scheduledFlight);
         ResponseEntity<ScheduledFlightDetailsDto> response = new ResponseEntity<>(scheduledFlightDetailsDto, HttpStatus.OK);
         return response;
-    }
-
-
-    private Aiport fetchAirportbyAirportCode(BigInteger airportCode) {
-        Aiport airport = new Aiport();
-        airport.setAirportCode(new BigInteger("100"));
-        airport.setSourceairportName("RAJA BHOJ");
-        airport.setDestinationairportName("INDIRA GANDHI AIRPORT");
-
-        return airport;
-    }
-
-    private Flight getFlightDetails(BigInteger flightNumber) {
-
-
-        Flight flight = new Flight();
-        flight.setFlightnumber(new BigInteger("101"));
-        return flight;
     }
 
 
@@ -119,7 +87,7 @@ public class ScheduledFlightController {
 
 
     @DeleteMapping("/delete/{flightnumber}")
-    public ResponseEntity<Boolean> deleteBookingById(@PathVariable("flightnumber") BigInteger flightnumber) {
+    public ResponseEntity<Boolean> deleteScheduleByFlightNumber(@PathVariable("flightnumber") BigInteger flightnumber) {
         ScheduledFlight scheduledFlight = scheduledFlightService.viewScheduledFlights(flightnumber);
         ResponseEntity<Boolean> response;
         if (scheduledFlight != null) {
@@ -133,7 +101,7 @@ public class ScheduledFlightController {
 
 
     @GetMapping
-    public ResponseEntity<List<ScheduledFlightDetailsDto>> fetchScheduledflights() {
+    public ResponseEntity<List<ScheduledFlightDetailsDto>> fetchScheduledFlights() {
         List<ScheduledFlight> scheduledFlights = scheduledFlightService.viewScheduledFlight();
         List<ScheduledFlightDetailsDto> scheduledFlightDetails = ScheduleFlightUtil.scheduleFlightDetails(scheduledFlights);
         ResponseEntity<List<ScheduledFlightDetailsDto>> response = new ResponseEntity<>(scheduledFlightDetails, HttpStatus.OK);
@@ -141,7 +109,7 @@ public class ScheduledFlightController {
     }
 
     @PutMapping("/modify/{flightnumber}")
-    ResponseEntity<ScheduledFlightDetailsDto> modify(@PathVariable("flightnumber") BigInteger flightNumber,
+    public ResponseEntity<ScheduledFlightDetailsDto> modify(@PathVariable("flightnumber") BigInteger flightNumber,
                                                      @Valid @RequestBody CreateScheduleRequest dto) {
         ScheduledFlight scheduledFlight = scheduledFlightService.viewScheduledFlights(flightNumber);
         scheduledFlight.setAvailableSeats(dto.getAvailableseats());
@@ -169,7 +137,7 @@ public class ScheduledFlightController {
 
 
     @ExceptionHandler(ScheduledFlightNotFoundException.class)
-    public ResponseEntity<String> handleScheduleflightnotfound(ScheduledFlightNotFoundException ex) {
+    public ResponseEntity<String> handleScheduleFlightNotFound(ScheduledFlightNotFoundException ex) {
         Log.error("Schedule Flight Not Found ", ex);
         String msg = ex.getMessage();
         ResponseEntity<String> response = new ResponseEntity<>(msg, HttpStatus.NOT_FOUND);
