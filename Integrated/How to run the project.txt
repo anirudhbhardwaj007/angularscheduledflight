@@ -1,0 +1,17 @@
+In command prompt or IDE terminal run the following command:
+1- ng serve (For angular project to run and start its server use this command in command prompt 
+             giving location of package  and default port of angular is 4200 so the url would 
+             be http://localhost:4200/)
+              
+2-mvn spring-boot:run(To start discovery microservices server run this command in command prompt 
+                      or terminal of IDE giving location of package  and default port of eureka server
+                       is 8585 so the url would be http://localhost:8585/)
+
+3-mvn spring-boot:run(To start scheduledflight microservices run this command in command prompt 
+                      or terminal of IDE giving location of package and tomcat port in
+                       application. properties is 8086 so the url would be http://localhost:8086/)
+
+
+
+Note:Total 3 Command prompt windows would be open to run the project in short 3 servers would be running
+            For installing maven dependency you can use this command : mvn compile 

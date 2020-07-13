@@ -1,0 +1,8 @@
+It contain one module of flight management system i .e ScheduleFlight module 
+it is a maven project so use maven for better approach
+
+IDE used
+Intellija community edition
+Maven
+Visual studio
+Tomcat
