@@ -6,3 +6,7 @@ Intellija community edition
 Maven
 Visual studio
 Tomcat
+Postman
+
+Database used
+System database (Alternatively we can use oracle database also )
